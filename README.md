@@ -1,2 +1,3 @@
-# eSports_Team_Site
-Team Site for an eSport organization
+# weather app
+this is an exercise to learn APIs
+
