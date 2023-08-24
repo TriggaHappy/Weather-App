@@ -1,0 +1,38 @@
+html,
+body {
+  height: 100%;
+}
+
+.main {
+  margin-left: 50%;
+  margin-right: 50%;
+}
+
+.wrapper {
+  display: grid;
+  grid-template-columns: 60px 100px;
+  grid-template-rows: 40px 40px 40px 40px 40px 40px 40px 40px 40px 40px;
+}
+
+.head__text {
+  grid-column: span 2;
+}
+
+.input {
+  grid-column: span 2;
+  grid-row: 2 / 3;
+}
+
+.search {
+  grid-column: span 2;
+  grid-row: 3 / 4;
+}
+
+#icon {
+  grid-row: 4 / 7;
+  grid-column: span 2;
+}
+
+.first__row {
+  grid-column: 1 / 2;
+}
