@@ -5,17 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <script src="script.js" async></script>
     <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.11.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="style.css" />
     <title>weather_app</title>
   </head>
   <body>
-    <div main>
-      <div weather>
-        <div>Please enter your city</div>
-        <input input type="text" />
-        <button search>Search</button>
-        <div temp>Temp:</div>
-        <div weather>weather:</div>
-        <img id="icon" ></img>
+    <div class="main">
+      <div class="wrapper">
+        <!-- search bar -->
+        <div class="head__text">Please enter your city</div>
+        <input class="input" input type="text" />
+        <button class="search" search>Search</button>
+
+        <!-- icon -->
+        <img id="icon" />
+
+        <!-- grid layout -->
+
+        <div temp class="first__row">Temp:</div>
+        <div tempSecond class="second__row">TempPlaceholder</div>
+        <div sunrise class="first__row">Sunrise</div>
+        <div sunriseSecond class="second__row">SunrisePlaceholder</div>
+        <div sunset class="first__row">Sunset</div>
+        <div sunsetSecond class="second__row sunset">SunsetPlaceholder</div>
       </div>
     </div>
   </body>
