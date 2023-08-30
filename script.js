@@ -19,7 +19,7 @@ let unixTimestampSunrise = '';
 let unixTimestampSunset = '';
 let systemChosen = 'metric';
 
-//functions
+//time Conversion
 function convertUnixTimeStampToLocalTime(time) {
   unixTimestampSunrise = time * 1000;
   let dateObject = new Date(unixTimestampSunrise);
@@ -29,8 +29,21 @@ function convertUnixTimeStampToLocalTime(time) {
 //calculation system
 myDropdown.onchange = function () {
   systemChosen = this.value;
-  console.log(systemChosen);
 };
+
+//temp calculation
+function temperatureCalculation(temp) {
+  if (systemChosen === 'metric') {
+    temperature = Math.trunc(Number(temp));
+    temperatureEL.textContent = `${temperature} °C`;
+  } else if (systemChosen === 'imperial') {
+    temperature = Math.trunc(Number(temp));
+    temperatureEL.textContent = `${temperature} °F`;
+  } else {
+    temperature = Math.trunc(Number(temp));
+    temperatureEL.textContent = `${temperature} °K`;
+  }
+}
 
 //API pull
 btn.addEventListener('click', function () {
@@ -43,16 +56,8 @@ btn.addEventListener('click', function () {
     success: function (data) {
       icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
 
-      if (systemChosen === 'metric') {
-        temperature = Math.trunc(Number(data.main.temp));
-        temperatureEL.textContent = `${temperature} °C`;
-      } else if (systemChosen === 'imperial') {
-        temperature = Math.trunc(Number(data.main.temp));
-        temperatureEL.textContent = `${temperature} °F`;
-      } else {
-        temperature = Math.trunc(Number(data.main.temp));
-        temperatureEL.textContent = `${temperature} °K`;
-      }
+      //temperature textContent
+      temperatureCalculation(data.main.temp);
 
       //sunrise & sunset
       sunriseEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunrise);
