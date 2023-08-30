@@ -37,16 +37,6 @@ body {
   grid-column: 1 / 2;
 }
 
-/* Dropdown Button */
-.dropbtn {
-  background-color: #3498db;
-  color: white;
-  padding: 16px;
-  font-size: 16px;
-  border: none;
-  cursor: pointer;
-}
-
 /* Dropdown button on hover & focus */
 .dropbtn:hover,
 .dropbtn:focus {
@@ -61,7 +51,7 @@ body {
 
 /* Dropdown Content (Hidden by Default) */
 .dropdown-content {
-  display: none;
+  display: show;
   position: absolute;
   background-color: #f1f1f1;
   min-width: 160px;
