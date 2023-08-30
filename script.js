@@ -7,6 +7,9 @@ const controlEL = document.querySelector('[control]');
 const temperatureEL = document.querySelector('[tempSecond]');
 const sunriseEL = document.querySelector('[sunriseSecond]');
 const sunsetEL = document.querySelector('[sunsetSecond]');
+const btnDropdownEl = document.querySelector('[dropbtn]');
+const dropdownContentEL = document.querySelector('[dropdown-content]');
+const dropdownValueEL = document.querySelector('[dropdown-value]');
 //Elements
 
 //variables
@@ -15,6 +18,7 @@ let icon = document.getElementById('icon');
 let temperatur = '';
 let unixTimestampSunrise = '';
 let unixTimestampSunset = '';
+let systemChosen = 'metric';
 
 //functions
 function convertUnixTimeStampToLocalTime(time) {
@@ -23,10 +27,21 @@ function convertUnixTimeStampToLocalTime(time) {
   return dateObject.toLocaleTimeString();
 }
 
+btnDropdownEl.addEventListener('click', function () {
+  document.getElementById('myDropdown').classList.toggle('show');
+});
+
+//calculation system
+myDropdown.onchange = function () {
+  systemChosen = this.value;
+  console.log(systemChosen);
+};
+
+//API pull
 btn.addEventListener('click', function () {
   $.ajax({
     method: 'GET',
-    url: `http://api.openweathermap.org/data/2.5/weather?q=${inputEL.value}&appid=${apiKey}`,
+    url: `http://api.openweathermap.org/data/2.5/weather?q=${inputEL.value}&appid=${apiKey}&units=${systemChosen}`,
     //headers: { 'X-Api-Key': 'YOUR_API_KEY'},
     //contentType: 'application/json',
     dataType: 'JSON',
@@ -38,6 +53,7 @@ btn.addEventListener('click', function () {
       //sunrise & sunset
       sunriseEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunrise);
       sunsetEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunset);
+      console.log(systemChosen);
     },
 
     error: function ajaxError(jqXHR) {
