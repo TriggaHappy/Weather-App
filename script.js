@@ -7,7 +7,6 @@ const controlEL = document.querySelector('[control]');
 const temperatureEL = document.querySelector('[tempSecond]');
 const sunriseEL = document.querySelector('[sunriseSecond]');
 const sunsetEL = document.querySelector('[sunsetSecond]');
-const btnDropdownEl = document.querySelector('[dropbtn]');
 const dropdownContentEL = document.querySelector('[dropdown-content]');
 const dropdownValueEL = document.querySelector('[dropdown-value]');
 //Elements
@@ -15,7 +14,7 @@ const dropdownValueEL = document.querySelector('[dropdown-value]');
 //variables
 let apiKey = 'eafb8fbf299373ccddfba8adbc96f97b';
 let icon = document.getElementById('icon');
-let temperatur = '';
+let temperature = '';
 let unixTimestampSunrise = '';
 let unixTimestampSunset = '';
 let systemChosen = 'metric';
@@ -26,10 +25,6 @@ function convertUnixTimeStampToLocalTime(time) {
   let dateObject = new Date(unixTimestampSunrise);
   return dateObject.toLocaleTimeString();
 }
-
-btnDropdownEl.addEventListener('click', function () {
-  document.getElementById('myDropdown').classList.toggle('show');
-});
 
 //calculation system
 myDropdown.onchange = function () {
@@ -47,8 +42,17 @@ btn.addEventListener('click', function () {
     dataType: 'JSON',
     success: function (data) {
       icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
-      temperatur = Math.trunc(Number(data.main.temp - 273, 15)); //dynamic!!!!
-      temperatureEL.textContent = temperatur;
+
+      if (systemChosen === 'metric') {
+        temperature = Math.trunc(Number(data.main.temp));
+        temperatureEL.textContent = `${temperature} °C`;
+      } else if (systemChosen === 'imperial') {
+        temperature = Math.trunc(Number(data.main.temp));
+        temperatureEL.textContent = `${temperature} °F`;
+      } else {
+        temperature = Math.trunc(Number(data.main.temp));
+        temperatureEL.textContent = `${temperature} °K`;
+      }
 
       //sunrise & sunset
       sunriseEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunrise);
@@ -63,5 +67,3 @@ btn.addEventListener('click', function () {
 });
 
 //grid css / html
-//drop down menu -> units (Celsius, Farenheit, Standard)
-// sunrise sunset hint: unix timestamp
