@@ -6,7 +6,7 @@ const inputEL = document.querySelector('[input]');
 const controlEL = document.querySelector('[control]');
 const temperatureEL = document.querySelector('[tempSecond]');
 const sunriseEL = document.querySelector('[sunriseSecond]');
-const sunsetEl = document.querySelector('.[sunsetSecond]');
+const sunsetEL = document.querySelector('[sunsetSecond]');
 //Elements
 
 //variables
@@ -17,6 +17,12 @@ let unixTimestampSunrise = '';
 let unixTimestampSunset = '';
 
 //functions
+function convertUnixTimeStampToLocalTime(time) {
+  unixTimestampSunrise = time * 1000;
+  let dateObject = new Date(unixTimestampSunrise);
+  return dateObject.toLocaleTimeString();
+}
+
 btn.addEventListener('click', function () {
   $.ajax({
     method: 'GET',
@@ -25,24 +31,15 @@ btn.addEventListener('click', function () {
     //contentType: 'application/json',
     dataType: 'JSON',
     success: function (data) {
-      console.log(data);
       icon.src = `https://openweathermap.org/img/wn/${data.weather[0].icon}@2x.png`;
       temperatur = Math.trunc(Number(data.main.temp - 273, 15)); //dynamic!!!!
       temperatureEL.textContent = temperatur;
 
-      //sunrise
-      unixTimestampSunrise = data.sys.sunrise * 1000;
-      let SunriseObject = new Date(unixTimestampSunrise);
-      let SunriseDateFormat = SunriseObject.toLocaleTimeString();
-      sunriseEL.textContent = SunriseDateFormat;
-
-      //sunset
-      unixTimestampSunset = data.sys.sunset * 1000;
-      let SunsetObject = new Date(unixTimestampSunset);
-      let SunsetDateFormat = SunsetObject.toLocaleTimeString();
-      console.log(SunsetDateFormat);
-      //sunsetEl.textContent = SunsetDateFormat; NOT WORKING
+      //sunrise & sunset
+      sunriseEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunrise);
+      sunsetEL.textContent = convertUnixTimeStampToLocalTime(data.sys.sunset);
     },
+
     error: function ajaxError(jqXHR) {
       console.error('Error: ', jqXHR.responseText);
     },
