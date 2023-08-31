@@ -72,3 +72,5 @@ btn.addEventListener('click', function () {
 });
 
 //grid css / html
+//5 day weather forecast per 3 hours https://openweathermap.org/forecast5
+//error handling (if http =/= 200, plain textfield, wrong city etc)
