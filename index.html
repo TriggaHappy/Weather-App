@@ -10,30 +10,59 @@
   </head>
   <body>
     <div class="main">
-      <div class="wrapper">
-        <!-- search bar -->
-        <div class="head__text">Please enter your city</div>
-        <input class="input" input type="text" />
+      <!-- search bar -->
+
+      <div class="wrapper-input">
+        <div class="head-text">Please enter your city</div>
+        <input class="input" input type="text" name="city" required />
+        <span error></span>
         <button class="search" search>Search</button>
+      </div>
 
-        <!-- icon -->
-        <img id="icon" />
+      <div class="dropdown">
+        <select dropdown-content id="myDropdown" class="dropdown-content">
+          <option dropdown value="metric">Metric</option>
+          <option dropdown value="imperial">Imperial</option>
+          <option dropdown value="kelvin">Kelvin</option>
+        </select>
+      </div>
 
-        <!-- grid layout -->
-        <div temp class="first__row">Temp:</div>
-        <div tempSecond class="second__row"></div>
-        <div sunrise class="first__row">Sunrise</div>
-        <div sunriseSecond class="second__row"></div>
-        <div sunset class="first__row">Sunset</div>
-        <div sunsetSecond class="second__row sunset"></div>
+      <div class="wrapper-all">
+        <div class="wrapper-weather">
+          <!-- icon -->
+          <img id="icon" />
 
-        <!-- dropdown -->
-        <div class="dropdown">
-          <select dropdown-content id="myDropdown" class="dropdown-content">
-            <option dropdown value="metric">Metric</option>
-            <option dropdown value="imperial">Imperial</option>
-            <option dropdown value="kelvin">Kelvin</option>
-          </select>
+          <!-- grid layout -->
+          <div temp class="first-row">Temp:</div>
+          <div tempSecond class="second-row"></div>
+          <div sunrise class="first-row">Sunrise</div>
+          <div sunriseSecond class="second-row"></div>
+          <div sunset class="first-row">Sunset</div>
+          <div sunsetSecond class="second-row sunset"></div>
+        </div>
+        <div class="wrapper-weather">
+          <!-- icon -->
+          <img id="icon" />
+
+          <!-- grid layout -->
+          <div temp class="first-row">Temp:</div>
+          <div tempSecond class="second-row"></div>
+          <div sunrise class="first-row">Sunrise</div>
+          <div sunriseSecond class="second-row"></div>
+          <div sunset class="first-row">Sunset</div>
+          <div sunsetSecond class="second-row sunset"></div>
+        </div>
+        <div class="wrapper-weather">
+          <!-- icon -->
+          <img id="icon" />
+
+          <!-- grid layout -->
+          <div temp class="first-row">Temp:</div>
+          <div tempSecond class="second-row"></div>
+          <div sunrise class="first-row">Sunrise</div>
+          <div sunriseSecond class="second-row"></div>
+          <div sunset class="first-row">Sunset</div>
+          <div sunsetSecond class="second-row sunset"></div>
         </div>
       </div>
     </div>
